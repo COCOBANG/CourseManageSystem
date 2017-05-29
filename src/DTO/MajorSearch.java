@@ -1,4 +1,4 @@
-package Dto;
+package DTO;
 
 /**
  * Created by Jaho on 2017/2/28.

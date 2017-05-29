@@ -1,4 +1,4 @@
-package Dao;
+package DAO;
 
 import Entity.Memo;
 import org.hibernate.Session;

@@ -1,4 +1,4 @@
-package Dao;
+package DAO;
 
 import Entity.Lesson;
 import org.hibernate.Session;

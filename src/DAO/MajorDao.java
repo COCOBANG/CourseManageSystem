@@ -1,9 +1,9 @@
-package Dao;
+package DAO;
 
 import Entity.Plan;
 import Entity.Major;
 import java.util.List;
-import Dto.MajorSearch;
+import DTO.MajorSearch;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 

@@ -1,4 +1,4 @@
-package Dao;
+package DAO;
 
 import Entity.Plan;
 import java.util.List;
