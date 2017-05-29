@@ -1,11 +1,9 @@
 package Dao;
 
+import java.util.List;
 import Entity.MajorLesson;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-
-import java.util.List;
-import java.util.Vector;
 
 /**
  * Created by Jaho on 2017/5/29.
@@ -46,39 +44,38 @@ public class MjrLsnDao {
         }
     }
 
-    // query and return all major_Lessons
-    // with plan_id
-    public List<MajorLesson> getMajorLessonListByPlanId (int planId) {
+    // 根据教学计划查询专业课程关系
+    public List<MajorLesson> getMjrLsnsOfPlan (int planId) {
+
         String hql = "from MajorLesson where planId = :planId";
         Query query = session.createQuery(hql);
         query.setParameter("planId",planId);
         return query.list();
+
     }
 
-    // query and return all major_Lessons
-    // with major_id
-    public List<MajorLesson> getMajorLessonListByMajorId (int majorId) {
-        String hql = "from MajorLesson where majorLessonMId = :majorLessonMId";
+    // 根据专业查询专业课程关系
+    public List<MajorLesson> getMjrLsnsOfMajor (int majorId) {
+
+        String hql = "from MajorLesson where mjrId = :mjrId";
         Query query = session.createQuery(hql);
-        query.setParameter("majorLessonMId",majorId);
+        query.setParameter("mjrId",majorId);
         return query.list();
     }
 
-    // query and return all major_Lessons
-    // with lesson_id
-    public List<MajorLesson> getMajorLessonListByLessonId (int lessonId) {
-        String hql = "from MajorLesson where majorLessonLId = :majorLessonLId";
+    // 根据课程查询专业课程关系
+    public List<MajorLesson> getMjrLsnsOfLesson (int lessonId) {
+        String hql = "from MajorLesson where lsnId = :lsnId";
         Query query = session.createQuery(hql);
-        query.setParameter("majorLessonLId",lessonId);
+        query.setParameter("lsnId",lessonId);
         return query.list();
     }
 
-    // query and return all major_Lessons
-    // with lesson_type and plan_id
-    public List<MajorLesson> getMajorLessonListByTypePlanId (String lessonType, int planId) {
-        String hql = "from MajorLesson where majorLessonType = :lessonType and planId = :planId";
+    // 根据课程类型和教学计划查询专业课程关系
+    public List<MajorLesson> getMjrLsns (String lessonType, int planId) {
+        String hql = "from MajorLesson where lsnType = :lsnType  and planId = :planId";
         Query query = session.createQuery(hql);
-        query.setParameter("lessonType",lessonType);
+        query.setParameter("lsnType",lessonType);
         query.setParameter("planId",planId);
         return query.list();
     }

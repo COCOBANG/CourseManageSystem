@@ -9,27 +9,27 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Memo {
-    private String mTime;
-    private String memo;
+    private String content;
+    private String time;
 
     @Basic
-    @Column(name = "m_time", nullable = false, length = 20)
-    public String getmTime() {
-        return mTime;
+    @Column(name = "content", nullable = true, length = -1)
+    public String getContent() {
+        return content;
     }
 
-    public void setmTime(String mTime) {
-        this.mTime = mTime;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Basic
-    @Column(name = "memo", nullable = true, length = -1)
-    public String getMemo() {
-        return memo;
+    @Column(name = "time", nullable = false, length = 20)
+    public String getTime() {
+        return time;
     }
 
-    public void setMemo(String memo) {
-        this.memo = memo;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     @Override
@@ -37,18 +37,18 @@ public class Memo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Memo memo1 = (Memo) o;
+        Memo memo = (Memo) o;
 
-        if (mTime != null ? !mTime.equals(memo1.mTime) : memo1.mTime != null) return false;
-        if (memo != null ? !memo.equals(memo1.memo) : memo1.memo != null) return false;
+        if (content != null ? !content.equals(memo.content) : memo.content != null) return false;
+        if (time != null ? !time.equals(memo.time) : memo.time != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = mTime != null ? mTime.hashCode() : 0;
-        result = 31 * result + (memo != null ? memo.hashCode() : 0);
+        int result = content != null ? content.hashCode() : 0;
+        result = 31 * result + (time != null ? time.hashCode() : 0);
         return result;
     }
 }

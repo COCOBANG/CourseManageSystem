@@ -9,27 +9,27 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Record {
-    private String rTime;
-    private String record;
+    private String content;
+    private String time;
 
     @Basic
-    @Column(name = "r_time", nullable = false, length = 20)
-    public String getrTime() {
-        return rTime;
+    @Column(name = "content", nullable = true, length = -1)
+    public String getContent() {
+        return content;
     }
 
-    public void setrTime(String rTime) {
-        this.rTime = rTime;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Basic
-    @Column(name = "record", nullable = true, length = -1)
-    public String getRecord() {
-        return record;
+    @Column(name = "time", nullable = false, length = 20)
+    public String getTime() {
+        return time;
     }
 
-    public void setRecord(String record) {
-        this.record = record;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     @Override
@@ -37,18 +37,18 @@ public class Record {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Record record1 = (Record) o;
+        Record record = (Record) o;
 
-        if (rTime != null ? !rTime.equals(record1.rTime) : record1.rTime != null) return false;
-        if (record != null ? !record.equals(record1.record) : record1.record != null) return false;
+        if (content != null ? !content.equals(record.content) : record.content != null) return false;
+        if (time != null ? !time.equals(record.time) : record.time != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = rTime != null ? rTime.hashCode() : 0;
-        result = 31 * result + (record != null ? record.hashCode() : 0);
+        int result = content != null ? content.hashCode() : 0;
+        result = 31 * result + (time != null ? time.hashCode() : 0);
         return result;
     }
 }
