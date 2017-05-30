@@ -2,6 +2,9 @@ package DAO;
 
 import Entity.Record;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 /**
  * Created by Jaho on 2017/5/29.
@@ -21,5 +24,11 @@ public class RecordDao {
         return;
     }
 
+    public List<Record> getRecords(){
+        String hql = "from Record ";
+        Query query = session.createQuery(hql);
+        List<Record> records = (List<Record>) query.list();
+        return records;
+    }
 
 }

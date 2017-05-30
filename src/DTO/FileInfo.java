@@ -13,6 +13,7 @@ public class FileInfo {
 
     private String year;
     private String season;
+    private String name;
     private Major major;
     private List<LessonInfo> lessonInfos;
 
@@ -70,5 +71,13 @@ public class FileInfo {
 
     public void setLessonInfos(List<LessonInfo> lessonInfos) {
         this.lessonInfos = lessonInfos;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

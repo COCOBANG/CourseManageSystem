@@ -6,23 +6,23 @@ import java.util.ArrayList;
 
 /**
  * Created by Jaho on 2017/3/9.
- * 根据教学计划查看所有专业
+ * 根据教学计划、课程类型查看所有课程
  */
-public class PlanMajorInfo {
+public class PlnLsnInfo {
 
-    private String majorName;
+    private String type;
     private List<Lesson> lessons;
 
-    public PlanMajorInfo() {
+    public PlnLsnInfo() {
         this.lessons = new ArrayList<Lesson>();
     }
 
-    public String getMajorName() {
-        return majorName;
+    public String getType() {
+        return type;
     }
 
-    public void setMajorName(String majorName) {
-        this.majorName = majorName;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public List<Lesson> getLessons() {

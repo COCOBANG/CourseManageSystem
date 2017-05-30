@@ -2,6 +2,9 @@ package DAO;
 
 import Entity.Memo;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 /**
  * Created by Jaho on 2017/5/29.
@@ -20,6 +23,13 @@ public class MemoDao {
         memo.setContent(content);
         session.save(memo);
         return;
+    }
+
+    public List<Memo> getMemos(){
+        String hql = "from Memo";
+        Query query = session.createQuery(hql);
+        List<Memo> memos = (List<Memo>) query.list();
+        return memos;
     }
 
 }

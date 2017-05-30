@@ -141,4 +141,5 @@ public class Lesson {
         result = 31 * result + (planId != null ? planId.hashCode() : 0);
         return result;
     }
+
 }

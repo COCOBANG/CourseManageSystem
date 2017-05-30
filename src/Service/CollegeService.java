@@ -6,7 +6,7 @@ import DAO.MajorDao;
 import Entity.Major;
 import java.util.List;
 import DTO.ClgMajorInfo;
-import DTO.MajorComparator;
+import DTO.MjrComparator;
 import java.util.ArrayList;
 import org.hibernate.Session;
 import java.util.Collections;
@@ -29,7 +29,7 @@ public class CollegeService {
         List<ClgMajorInfo> clgMajorInfos = new ArrayList<ClgMajorInfo>();
         MajorDao majorDao= new MajorDao(session);
         List<Major> majors = majorDao.getMajorsOfClg(college);
-        Collections.sort(majors,new MajorComparator());
+        Collections.sort(majors,new MjrComparator());
         PlanDao planDao = new PlanDao(session);
 
         for(Major major:majors){

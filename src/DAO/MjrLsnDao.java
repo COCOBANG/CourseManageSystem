@@ -72,7 +72,7 @@ public class MjrLsnDao {
     }
 
     // 根据课程类型和教学计划查询专业课程关系
-    public List<MajorLesson> getMjrLsns (String lessonType, int planId) {
+    public List<MajorLesson> getMjrLsnsInType (String lessonType, int planId) {
         String hql = "from MajorLesson where lsnType = :lsnType  and planId = :planId";
         Query query = session.createQuery(hql);
         query.setParameter("lsnType",lessonType);

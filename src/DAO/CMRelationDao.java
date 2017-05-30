@@ -1,17 +1,19 @@
 package DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 import Entity.CollegeMajor;
+import Entity.Lesson;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 /**
  * Created by Jaho on 2017/5/29.
  */
-public class ClgMjrDao {
+public class CMRelationDao {
     private Session session = null;
 
-    public ClgMjrDao(Session session){
+    public CMRelationDao(Session session){
         this.session = session;
     }
 
@@ -61,8 +63,15 @@ public class ClgMjrDao {
         Query query = session.createQuery(hql);
         query.setParameter("major",major);
         String college  = (String) query.uniqueResult();
-
         return college;
-
     }
+
+    public List<CollegeMajor> getRelations(){
+
+        String hql = "from CollegeMajor";
+        Query query = session.createQuery(hql);
+        List<CollegeMajor> collegeMajors = query.getResultList();
+        return collegeMajors;
+    }
+
 }

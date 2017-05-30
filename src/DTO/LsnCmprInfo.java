@@ -7,13 +7,13 @@ import java.util.ArrayList;
 /**
  * Created by Jaho on 2017/3/10.
  */
-public class LsnCompareInfo {
+public class LsnCmprInfo {
 
     private Lesson newLesson;
     private Lesson oldLesson;
     private List<String> compareRecord;
 
-    public LsnCompareInfo() {
+    public LsnCmprInfo() {
         this.compareRecord = new ArrayList<String>();
     }
 

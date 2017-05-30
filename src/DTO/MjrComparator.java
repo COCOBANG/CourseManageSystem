@@ -9,7 +9,7 @@ import java.util.Comparator;
 /**
  * Created by Jaho on 2017/3/9.
  */
-public class MajorComparator implements Comparator{
+public class MjrComparator implements Comparator{
     @Override
     public int compare(Object o1, Object o2) {
 

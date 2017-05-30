@@ -61,7 +61,7 @@ public class MajorDao {
 
     // query and return  all majors
     // with plan_id
-    public List<Major> getMajorListByPlanId (int planId) {
+    public List<Major> getMajorsOfPlan(int planId) {
         String hql = "from Major where planId = :planId";
         Query query = session.createQuery(hql);
         query.setParameter("planId",planId);
@@ -193,5 +193,14 @@ public class MajorDao {
         }else {
             return -1;
         }
+    }
+
+    public String getName(int id){
+
+        String hql = "select name from Major where mjrId = :mjrId";
+        Query query = session.createQuery(hql);
+        query.setParameter("mjrId",id);
+        String name = (String) query.uniqueResult();
+        return name;
     }
 }
