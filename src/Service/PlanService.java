@@ -5,16 +5,16 @@ import DAO.MajorDao;
 import DAO.LessonDao;
 import DAO.MjrLsnDao;
 
-import DTO.RsLesson;
-import DTO.PlnLsnInfo;
-import DTO.PlnMjrInfo;
-
-import Entity.Major;
-import Entity.Lesson;
-import Entity.MajorLesson;
+import DTO.Plan.RsLesson;
+import DTO.Plan.PlnLsnInfo;
+import DTO.Plan.PlnMjrInfo;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import Entity.Lesson;
+import Entity.Major;
+import Entity.MajorLesson;
 import org.hibernate.Session;
 
 /**
@@ -30,7 +30,7 @@ public class PlanService {
 
 
     // 查询同一个教学计划内被多个专业使用的课程
-    public List<RsLesson> getReuseLessons(String year , String season){
+    public List<RsLesson> getReuseLessons(String year, String season){
 
         PlanDao planDao = new PlanDao(session);
         LessonDao lessonDao = new LessonDao(session);

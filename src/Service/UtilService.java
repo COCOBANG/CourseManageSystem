@@ -6,8 +6,6 @@ import Entity.Major;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -92,6 +90,22 @@ public class UtilService {
         lesson.setCrdtHrs(lessonInfo.getCrdtHours());
 
         return lesson;
+    }
+
+    // 复制课程实体为课程信息类
+    public static LessonInfo copyLsn(Lesson lesson){
+
+        LessonInfo lessonInfo = new LessonInfo();
+
+        lessonInfo.setCode(lesson.getCode());
+        lessonInfo.setName(lesson.getName());
+        lessonInfo.setRemark(lesson.getRemark());
+        lessonInfo.setCredit(lesson.getCredit());
+        lessonInfo.setExamine(lesson.getExamine());
+        lessonInfo.setSemester(lesson.getSemester());
+        lessonInfo.setCrdtHours(lesson.getCrdtHrs());
+
+        return lessonInfo;
     }
 
 

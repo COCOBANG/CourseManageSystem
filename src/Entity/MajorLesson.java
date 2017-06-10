@@ -1,12 +1,9 @@
 package Entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
- * Created by Jaho on 2017/5/29.
+ * Created by Jaho on 2017/5/31.
  */
 @Entity
 @Table(name = "major_lesson", schema = "CMS", catalog = "")
@@ -15,9 +12,11 @@ public class MajorLesson {
     private Integer lsnId;
     private String lsnType;
     private Integer planId;
+    private Integer id;
 
     @Basic
     @Column(name = "mjr_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getMjrId() {
         return mjrId;
     }
@@ -56,6 +55,16 @@ public class MajorLesson {
         this.planId = planId;
     }
 
+    @Id
+    @Column(name = "id", nullable = false)
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,6 +76,7 @@ public class MajorLesson {
         if (lsnId != null ? !lsnId.equals(that.lsnId) : that.lsnId != null) return false;
         if (lsnType != null ? !lsnType.equals(that.lsnType) : that.lsnType != null) return false;
         if (planId != null ? !planId.equals(that.planId) : that.planId != null) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
 
         return true;
     }
@@ -77,6 +87,7 @@ public class MajorLesson {
         result = 31 * result + (lsnId != null ? lsnId.hashCode() : 0);
         result = 31 * result + (lsnType != null ? lsnType.hashCode() : 0);
         result = 31 * result + (planId != null ? planId.hashCode() : 0);
+        result = 31 * result + (id != null ? id.hashCode() : 0);
         return result;
     }
 }

@@ -16,16 +16,13 @@ public class RecordDao {
         this.session = session;
     }
 
-    public void insert(String time,String content){
-        Record record = new Record();
-        record.setTime(time);
-        record.setContent(content);
+    public void insert(Record record){
         session.save(record);
         return;
     }
 
     public List<Record> getRecords(){
-        String hql = "from Record ";
+        String hql = "from Record";
         Query query = session.createQuery(hql);
         List<Record> records = (List<Record>) query.list();
         return records;

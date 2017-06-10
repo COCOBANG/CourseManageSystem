@@ -1,6 +1,7 @@
-package DTO;
+package DTO.Plan;
 
 import Entity.Lesson;
+
 import java.util.List;
 import java.util.ArrayList;
 

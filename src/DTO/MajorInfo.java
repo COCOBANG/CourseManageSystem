@@ -9,6 +9,7 @@ import java.util.List;
 public class MajorInfo {
 
     private String name;
+    private String level;
     private String degree;
     private List<String> coreLessons;
 
@@ -18,6 +19,14 @@ public class MajorInfo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public String getDegree() {
@@ -35,4 +44,5 @@ public class MajorInfo {
     public void setCoreLessons(List<String> coreLessons) {
         this.coreLessons = coreLessons;
     }
+
 }

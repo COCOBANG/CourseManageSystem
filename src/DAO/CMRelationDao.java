@@ -1,9 +1,8 @@
 package DAO;
 
-import java.util.ArrayList;
 import java.util.List;
+
 import Entity.CollegeMajor;
-import Entity.Lesson;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 

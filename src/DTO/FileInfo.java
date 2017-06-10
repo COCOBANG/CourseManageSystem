@@ -13,7 +13,6 @@ public class FileInfo {
 
     private String year;
     private String season;
-    private String name;
     private Major major;
     private List<LessonInfo> lessonInfos;
 
@@ -38,7 +37,6 @@ public class FileInfo {
         return major;
     }
 
-
     public String getSeason() {
         return season;
     }
@@ -47,37 +45,4 @@ public class FileInfo {
         return lessonInfos;
     }
 
-
-    public String getMajorName() {
-        return this.major.getName();
-    }
-
-    public void setMajorName(String majorName) {
-        this.major.setName(majorName);
-    }
-
-
-    public void setMajorLevel(String majorLevel) {
-        this.major.setLevel(majorLevel);
-    }
-
-    public String getMajorLevel() {
-        return this.major.getLevel();
-    }
-
-    public void setMajor(Major majorTableEntity) {
-        this.major = majorTableEntity;
-    }
-
-    public void setLessonInfos(List<LessonInfo> lessonInfos) {
-        this.lessonInfos = lessonInfos;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

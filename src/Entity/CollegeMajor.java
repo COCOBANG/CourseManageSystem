@@ -1,12 +1,9 @@
 package Entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
- * Created by Jaho on 2017/5/29.
+ * Created by Jaho on 2017/5/31.
  */
 @Entity
 @Table(name = "college_major", schema = "CMS", catalog = "")
@@ -14,6 +11,7 @@ public class CollegeMajor {
     private String clgName;
     private String mjrName;
     private String mjrLevel;
+    private Integer id;
 
     @Basic
     @Column(name = "clg_name", nullable = false, length = 50)
@@ -45,6 +43,17 @@ public class CollegeMajor {
         this.mjrLevel = mjrLevel;
     }
 
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,6 +64,7 @@ public class CollegeMajor {
         if (clgName != null ? !clgName.equals(that.clgName) : that.clgName != null) return false;
         if (mjrName != null ? !mjrName.equals(that.mjrName) : that.mjrName != null) return false;
         if (mjrLevel != null ? !mjrLevel.equals(that.mjrLevel) : that.mjrLevel != null) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
 
         return true;
     }
@@ -64,6 +74,7 @@ public class CollegeMajor {
         int result = clgName != null ? clgName.hashCode() : 0;
         result = 31 * result + (mjrName != null ? mjrName.hashCode() : 0);
         result = 31 * result + (mjrLevel != null ? mjrLevel.hashCode() : 0);
+        result = 31 * result + (id != null ? id.hashCode() : 0);
         return result;
     }
 }

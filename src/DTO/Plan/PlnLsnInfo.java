@@ -1,12 +1,13 @@
-package DTO;
+package DTO.Plan;
 
 import Entity.Lesson;
+
 import java.util.List;
 import java.util.ArrayList;
 
 /**
  * Created by Jaho on 2017/3/9.
- * 根据教学计划、课程类型查看所有课程
+ * 查看教学计划内按课程类型划分的所有课程
  */
 public class PlnLsnInfo {
 

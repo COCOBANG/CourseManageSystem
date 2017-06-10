@@ -1,6 +1,7 @@
 package DTO;
 
 import Entity.Lesson;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -9,27 +10,23 @@ import java.util.ArrayList;
  */
 public class LsnCmprInfo {
 
-    private Lesson newLesson;
-    private Lesson oldLesson;
+    private LessonInfo newLesson;
+    private LessonInfo oldLesson;
     private List<String> compareRecord;
 
-    public LsnCmprInfo() {
-        this.compareRecord = new ArrayList<String>();
-    }
-
-    public Lesson getNewLesson() {
+    public LessonInfo getNewLesson() {
         return newLesson;
     }
 
-    public void setNewLesson(Lesson newLesson) {
+    public void setNewLesson(LessonInfo newLesson) {
         this.newLesson = newLesson;
     }
 
-    public Lesson getOldLesson() {
+    public LessonInfo getOldLesson() {
         return oldLesson;
     }
 
-    public void setOldLesson(Lesson oldLesson) {
+    public void setOldLesson(LessonInfo oldLesson) {
         this.oldLesson = oldLesson;
     }
 
@@ -37,4 +34,7 @@ public class LsnCmprInfo {
         return compareRecord;
     }
 
+    public void setCompareRecord(List<String> compareRecord) {
+        this.compareRecord = compareRecord;
+    }
 }

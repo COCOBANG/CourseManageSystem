@@ -1,9 +1,9 @@
 package DAO;
 
-import Entity.Plan;
-import Entity.Major;
 import java.util.List;
 import DTO.MajorSearch;
+import Entity.Major;
+import Entity.Plan;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -37,13 +37,14 @@ public class MajorDao {
     public int insert(Major major) {
 
         int majorId = this.hasExist(major);
+
         if( majorId == 0){
             session.save(major);
             majorId = this.hasExist(major);
             return majorId;
-        }else {
+        }else
             return majorId;
-        }
+
 
     }
 
@@ -101,7 +102,7 @@ public class MajorDao {
      * 根据教学年份查询所有符合要求的专业
      */
     public List<Major> getMajorsOfYear(String year) {
-        List <Plan> plans = new PlanDao(session).getPlansOfYear(year);
+        List<Plan> plans = new PlanDao(session).getPlansOfYear(year);
 
         int planId0 = plans.get(0).getPlnId();
         int planId1 = planId0;

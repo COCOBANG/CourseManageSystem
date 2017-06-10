@@ -56,7 +56,7 @@ public class LessonDao {
     }
 
     //更新课程信息
-    public void update(int lessonId,Lesson lesson) {
+    public void update(int lessonId, Lesson lesson) {
         lesson.setLsnId(lessonId);
         session.update(lesson);
     }

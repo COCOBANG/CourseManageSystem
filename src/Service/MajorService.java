@@ -5,16 +5,16 @@ import DAO.MajorDao;
 import DAO.LessonDao;
 import DAO.MjrLsnDao;
 
-import Entity.Major;
-import Entity.Lesson;
-import Entity.MajorLesson;
-
 import DTO.LessonInfo;
 import DTO.MajorSearch;
 import DTO.LsnCmprInfo;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import Entity.Lesson;
+import Entity.Major;
+import Entity.MajorLesson;
 import org.hibernate.Session;
 
 /**
@@ -29,7 +29,7 @@ public class MajorService {
     }
 
     // 根据专业获取所有课程
-    public List<Lesson> getLsnsOfMajor(MajorSearch ms){
+    public List<LessonInfo> getLsnInfosOfMajor(MajorSearch ms){
 
         // 获取专业ID
         MajorDao majorDao = new MajorDao(session);
@@ -40,52 +40,19 @@ public class MajorService {
         List<MajorLesson> majorLessons = mjrLsnDao.getMjrLsnsOfMajor(majorId);
 
         // 获取所有课程信息
-        List<Lesson> lessons = new ArrayList<Lesson>();
+        List<LessonInfo> lessonInfos = new ArrayList<LessonInfo>();
         LessonDao lessonDao = new LessonDao(session);
         for (MajorLesson majorLesson: majorLessons) {
             Lesson lesson = lessonDao.getLessonById(majorLesson.getLsnId());
-            lessons.add(lesson);
-        }
-        return lessons;
-    }
-
-    public List<LessonInfo> getInfosOfMajor(MajorSearch ms){
-
-        // 获取专业信息ID
-        MajorDao majorDao = new MajorDao(session);
-        int majorId =  majorDao.getMajorId(ms);
-
-        // 获取所有课程信息
-        MjrLsnDao mjrLsnDao = new MjrLsnDao(session);
-        List<MajorLesson> majorLessons = mjrLsnDao.getMjrLsnsOfMajor(majorId);
-
-        // 获取所有课程传输信息
-        List<LessonInfo> lessonInfos = new ArrayList<LessonInfo>();
-        LessonDao lessonDao = new LessonDao(session);
-        for (MajorLesson mjrLsn: majorLessons) {
-
-            LessonInfo lessonInfo = new LessonInfo();
-            Lesson lesson = lessonDao.getLessonById(mjrLsn.getMjrId());
-            lessonInfo.setName(lesson.getName());
-            lessonInfo.setCode(lesson.getCode());
-            lessonInfo.setCredit(lesson.getCredit());
-            lessonInfo.setCrdtHours(lesson.getCrdtHrs());
-            lessonInfo.setExamine(lesson.getExamine());
-            lessonInfo.setSemester(lesson.getSemester());
-            lessonInfo.setRemark(lesson.getRemark());
-            lessonInfo.setType(mjrLsn.getLsnType());
-
+            LessonInfo lessonInfo = UtilService.copyLsn(lesson);
+            lessonInfo.setType(majorLesson.getLsnType());
             lessonInfos.add(lessonInfo);
         }
-
         return lessonInfos;
     }
 
 
-
-
-
-    public List<String> Compare2Major(MajorSearch oldMs, MajorSearch newMs){
+    public List<String> compare2Major(MajorSearch oldMs, MajorSearch newMs){
 
         // 根据信息获取完整专业信息
         MajorDao majorDao = new MajorDao(session);
@@ -144,19 +111,19 @@ public class MajorService {
         List<LsnCmprInfo> cmprLsnInfos = new ArrayList<LsnCmprInfo>();
 
         // 存储同名课程
-        List<Lesson> oldSameLessons = new ArrayList<Lesson>();
-        List<Lesson> newSameLessons = new ArrayList<Lesson>();
+        List<LessonInfo> oldSameLessons = new ArrayList<LessonInfo>();
+        List<LessonInfo> newSameLessons = new ArrayList<LessonInfo>();
 
         // 获取专业的课程信息
-        List<Lesson> oldLessons = this.getLsnsOfMajor(oldMs);
-        List<Lesson> newLessons = this.getLsnsOfMajor(newMs);
+        List<LessonInfo> oldLessons = this.getLsnInfosOfMajor(oldMs);
+        List<LessonInfo> newLessons = this.getLsnInfosOfMajor(newMs);
 
-        List<Lesson> oldLessonsCopy = this.getLsnsOfMajor(oldMs);
-        List<Lesson> newLessonsCopy = this.getLsnsOfMajor(newMs);
+        List<LessonInfo> oldLessonsCopy = this.getLsnInfosOfMajor(oldMs);
+        List<LessonInfo> newLessonsCopy = this.getLsnInfosOfMajor(newMs);
 
         //比较课程名，查询同名课程
-        for (Lesson oldLesson:oldLessonsCopy) {
-            for (Lesson newLesson:newLessonsCopy){
+        for (LessonInfo oldLesson:oldLessonsCopy) {
+            for (LessonInfo newLesson:newLessonsCopy){
                 String oldName = oldLesson.getName();
                 String newName = newLesson.getName();
                 if(oldName.equals(newName)){
@@ -170,15 +137,15 @@ public class MajorService {
         }
 
         // 2.对同名课程进行比较
-        String[] compareItems = {"课程代码","学分","学时","学期","考试方式","开/闭卷"};
+        String[] compareItems = {"课程代码","课程类型","学分","学时","学期","考试方式","开/闭卷"};
 
         for(int i = 0; i < oldSameLessons.size(); ++i){
 
             LsnCmprInfo lsnCmprInfo = new LsnCmprInfo();
 
             // 获取比较课程
-            Lesson oldLesson = oldSameLessons.get(i);
-            Lesson newLesson = newSameLessons.get(i);
+            LessonInfo oldLesson = oldSameLessons.get(i);
+            LessonInfo newLesson = newSameLessons.get(i);
 
             // 将比较课程存储
             lsnCmprInfo.setOldLesson(oldLesson);
@@ -193,7 +160,7 @@ public class MajorService {
                 String oldStr = oldLsn.get(j);
                 String newStr = newLsn.get(j);
 
-//                // MARK:意义不确定课程比较代码
+//                // MARK:比较学期
 //                if(j == 3){
 //                    char oc = oldStr.charAt(1);
 //                    char nc = newStr.charAt(1);
@@ -212,7 +179,7 @@ public class MajorService {
 
         // 3.删除的课程信息
         if(oldLessons.size() != 0){
-            for (Lesson oldLesson:oldLessons) {
+            for (LessonInfo oldLesson:oldLessons) {
 
                 LsnCmprInfo lsnCmprInfo = new LsnCmprInfo();
                 lsnCmprInfo.setOldLesson(oldLesson);
@@ -225,7 +192,7 @@ public class MajorService {
 
         // 4.新增的课程信息
         if(newLessons.size() != 0){
-            for (Lesson newLesson:newLessons) {
+            for (LessonInfo newLesson:newLessons) {
 
                 LsnCmprInfo lsnCmprInfo = new LsnCmprInfo();
                 lsnCmprInfo.setNewLesson(newLesson);
@@ -281,27 +248,28 @@ public class MajorService {
         }
     }
 
-    public Lesson getNewLesson(){
+    public LessonInfo getNewLesson(){
 
-        Lesson lessonTableEntity = new Lesson();
-        lessonTableEntity.setSemester("");
-        lessonTableEntity.setExamine("");
-        lessonTableEntity.setRemark("");
-        lessonTableEntity.setName("无记录");
-        lessonTableEntity.setCode("");
-        lessonTableEntity.setCredit("");
-        lessonTableEntity.setCrdtHrs("");
-        lessonTableEntity.setPlanId(0);
-        return  lessonTableEntity;
+        LessonInfo lessonInfo = new LessonInfo();
+        lessonInfo.setSemester("");
+        lessonInfo.setExamine("");
+        lessonInfo.setRemark("");
+        lessonInfo.setName("无记录");
+        lessonInfo.setCode("");
+        lessonInfo.setCredit("");
+        lessonInfo.setCrdtHours("");
+        lessonInfo.setType("");
+        return  lessonInfo;
 
     }
 
     // 将课程转为List,方便进行对比
-    private List<String> ConvertLesson2List(Lesson lesson) {
+    private List<String> ConvertLesson2List(LessonInfo lesson) {
         List<String> lessons = new ArrayList<String>();
         lessons.add(lesson.getCode());
+        lessons.add(lesson.getType());
         lessons.add(lesson.getCredit());
-        lessons.add(lesson.getCrdtHrs());
+        lessons.add(lesson.getCrdtHours());
         lessons.add(lesson.getSemester());
         lessons.add(lesson.getExamine());
         lessons.add(lesson.getRemark());

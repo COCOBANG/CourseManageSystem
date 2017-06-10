@@ -17,10 +17,7 @@ public class MemoDao {
         this.session = session;
     }
 
-    public void insert(String time,String content){
-        Memo memo = new Memo();
-        memo.setTime(time);
-        memo.setContent(content);
+    public void insert(Memo memo){
         session.save(memo);
         return;
     }

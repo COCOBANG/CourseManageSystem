@@ -1,17 +1,15 @@
 package Entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
- * Created by Jaho on 2017/5/29.
+ * Created by Jaho on 2017/5/31.
  */
 @Entity
 @Table(name = "lesson_code", schema = "CMS", catalog = "")
 public class LessonCode {
     private String code;
+    private Integer id;
 
     @Basic
     @Column(name = "code", nullable = false, length = 20)
@@ -23,6 +21,17 @@ public class LessonCode {
         this.code = code;
     }
 
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,12 +40,15 @@ public class LessonCode {
         LessonCode that = (LessonCode) o;
 
         if (code != null ? !code.equals(that.code) : that.code != null) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return code != null ? code.hashCode() : 0;
+        int result = code != null ? code.hashCode() : 0;
+        result = 31 * result + (id != null ? id.hashCode() : 0);
+        return result;
     }
 }

@@ -50,5 +50,8 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="jxl" level="project" />
+    <orderEntry type="library" name="json" level="project" />
+    <orderEntry type="library" name="gson:2.8.1" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
   </component>
 </module>

@@ -3,7 +3,7 @@ package Entity;
 import javax.persistence.*;
 
 /**
- * Created by Jaho on 2017/5/29.
+ * Created by Jaho on 2017/5/31.
  */
 @Entity
 public class Plan {
@@ -14,7 +14,6 @@ public class Plan {
     @Id
     @Column(name = "pln_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     public Integer getPlnId() {
         return plnId;
     }

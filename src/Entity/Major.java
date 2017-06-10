@@ -3,7 +3,7 @@ package Entity;
 import javax.persistence.*;
 
 /**
- * Created by Jaho on 2017/5/29.
+ * Created by Jaho on 2017/5/31.
  */
 @Entity
 public class Major {
@@ -27,7 +27,6 @@ public class Major {
     @Id
     @Column(name = "mjr_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     public Integer getMjrId() {
         return mjrId;
     }
@@ -233,5 +232,4 @@ public class Major {
         result = 31 * result + (planId != null ? planId.hashCode() : 0);
         return result;
     }
-
 }

@@ -1,4 +1,4 @@
-package DTO;
+package DTO.Plan;
 
 import Entity.Lesson;
 

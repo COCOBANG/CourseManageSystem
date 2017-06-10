@@ -1,6 +1,7 @@
 package DAO;
 
 import java.util.List;
+
 import Entity.MajorLesson;
 import org.hibernate.Session;
 import org.hibernate.query.Query;

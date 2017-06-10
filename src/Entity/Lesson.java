@@ -3,7 +3,7 @@ package Entity;
 import javax.persistence.*;
 
 /**
- * Created by Jaho on 2017/5/29.
+ * Created by Jaho on 2017/5/31.
  */
 @Entity
 public class Lesson {
@@ -141,5 +141,4 @@ public class Lesson {
         result = 31 * result + (planId != null ? planId.hashCode() : 0);
         return result;
     }
-
 }

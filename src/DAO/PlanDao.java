@@ -1,7 +1,8 @@
 package DAO;
 
-import Entity.Plan;
 import java.util.List;
+
+import Entity.Plan;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 

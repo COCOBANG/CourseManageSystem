@@ -3,10 +3,9 @@ package Service;
 import DAO.MajorDao;
 import DAO.MjrLsnDao;
 
-import Entity.Major;
 import Entity.Lesson;
+import Entity.Major;
 import Entity.MajorLesson;
-
 import org.hibernate.Session;
 
 import java.util.*;
@@ -98,7 +97,7 @@ public class YearService {
     }
 
     // 获取每一年的，按照层次划分的专业信息
-    public Map<String,Map<String,List<String>>> getMjosInLevel() {
+    public Map<String,Map<String,List<String>>> getMjrsInLevel() {
 
         // 获取所有年份
         List<String> yearList = new UtilService(session).getYears();
