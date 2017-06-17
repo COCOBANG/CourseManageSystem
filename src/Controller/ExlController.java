@@ -37,7 +37,7 @@ import java.util.Iterator;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/file")
+@RequestMapping("/exl")
 public class ExlController {
 
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
